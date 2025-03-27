@@ -2,21 +2,30 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 import { AddApply } from './church'
-import { IChurch, IUser } from '@/interface/user'
-import { IApply } from '@/interface/apply'
+import { IUser } from '@/interface/user'
+import { IApply, IDonation } from '@/interface/apply'
 import SignOut from '@/components/sign-out'
 import CafeTable from './cafe'
 
 
-const getChurches = async (month: string | undefined) => {
+const getChurchApply = async (month: string | undefined) => {
   const supabase = await createClient()
   const today = new Date()
-  return await supabase.from('user')
-    .select('*, apply_bean(*, apply_donation(*, user(*)))')
-    .eq('type', 'church')
-    .eq('apply_bean.month', month ?? today.getMonth() + 1)
-    .overrideTypes<IChurch[]>()
+  return await supabase.from('apply_bean')
+    .select('*, user(*), apply_donation(*, user(*))')
+    .eq('month', month ?? today.getMonth() + 1)
+    .overrideTypes<IApply[]>()
 }
+
+const getDonations = async () => {
+  const supabase = await createClient()
+  const { data: user } = await supabase.auth.getUser()
+  return await supabase.from('apply_donation')
+    .select('*, apply_bean(*, user(*)), user(*)')
+    .eq('cafe_id', user.user?.id)
+    .overrideTypes<IDonation[]>()
+}
+
 const getApply = async () => {
   const supabase = await createClient()
   const { data: user } = await supabase.auth.getUser()
@@ -81,13 +90,15 @@ const Church = async () => {
 }
 
 const Cafe = async ({ month }: { month: string | undefined }) => {
-  const { data: churches } = await getChurches(month)
-  console.log(churches[0].apply_bean[0])
-  if (!churches) return <></>
+  const { data: applies } = await getChurchApply(month)
+  const { data: donations } = await getDonations()
+  const supabase = await createClient()
+  const { data: user } = await supabase.auth.getUser()
+  if (!applies || !donations) return <></>
   return (
     <div>
       <SignOut />
-      <CafeTable churches={churches} />
+      <CafeTable applies={applies} donations={donations} user={user.user!} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { IUser } from "./user";
 
 export interface IApply {
-  id: string;
+  id: number;
   created_at: string;
   month: number;
   year: number;
@@ -9,6 +9,7 @@ export interface IApply {
   user_id: string;
   use_yn: boolean;
   apply_donation: IDonation[];
+  user: IUser
 }
 
 export interface IDonation {
@@ -18,4 +19,5 @@ export interface IDonation {
   cafe_id: string;
   bean: number;
   user: IUser;
+  apply_bean: IApply
 }
