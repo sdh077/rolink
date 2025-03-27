@@ -64,13 +64,15 @@ const Church = async () => {
       </div>
       <div className='grid grid-cols-2 gap-4 '>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(month =>
-          <div key={month}>
+          <div key={month} className='flex gap-4'>
             <div className='flex flex-col justify-center text-center w-64 h-32 border-2'>
               <div>{`${month}월`} <AddApply year={2025} month={month} apply={obj[`${2025}-${month}`]} /></div>
               <div>
-                {obj[`${2025}-${month}`]?.bean}
+                {obj[`${2025}-${month}`]?.bean}KG 신청
               </div>
             </div>
+            <div>파브스 3키로</div>
+            <div>링크트 3키로</div>
           </div>
         )}
       </div>
@@ -83,6 +85,9 @@ const Cafe = async ({ month }: { month: string | undefined }) => {
   console.log(churches[0].apply_bean[0])
   if (!churches) return <></>
   return (
-    <CafeTable churches={churches} />
+    <div>
+      <SignOut />
+      <CafeTable churches={churches} />
+    </div>
   )
 }
