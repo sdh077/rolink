@@ -13,9 +13,35 @@ const getDonations = async () => {
 const Donation = async () => {
   const { data: donations } = await getDonations()
   return (
-    <div>
+    <div className='grid md:grid-cols-3 w-full gap-16'>
       {donations?.map(donation =>
-        <div key={donation.id}>{donation.user.name} {donation.bean} {donation.apply_bean.user.name}</div>
+        <div key={donation.id}>
+          <div className='flex justify-between'>
+            <div>
+              날짜
+            </div>
+            <div>
+              {donation.apply_bean.year}-{donation.apply_bean.month}
+            </div>
+          </div>
+          <div className='flex justify-between'>
+            <div>
+              기부 대상
+            </div>
+            <div>
+              {donation.apply_bean.user.name}
+            </div>
+          </div>
+
+          <div className='flex justify-between'>
+            <div>
+              기부 커피
+            </div>
+            <div>
+              {donation.bean}kg
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

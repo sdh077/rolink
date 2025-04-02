@@ -25,7 +25,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from "sonner"
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { IApply, IDonation } from "@/interface/apply"
 import { IUser } from "@/interface/user"
 
@@ -132,10 +132,14 @@ export function DoDonation({ apply }: { apply: IApply; }) {
 
 const CafeTable = ({ applies, user }: { applies: IApply[]; user: IUser }) => {
   const pushPathname = useRouterPush()
+  const searchParams = useSearchParams();
+  const today = new Date()
+  const month = searchParams.get('month') ?? (today.getMonth() + 1).toString()
+
   return (
     <div className="w-full container my-3 md:py-5 bg-white rounded-xl">
       <div className='flex gap-8 justify-left'>
-        <Select onValueChange={(month) => pushPathname('month', month)}>
+        <Select value={month} onValueChange={(month) => pushPathname('month', month)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="월 선택" />
           </SelectTrigger>

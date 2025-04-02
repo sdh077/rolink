@@ -9,3 +9,9 @@ export const orderSubSchema = z.object({
   fare_type: z.string(),
   invoice: z.string(),
 })
+
+export const donationInfoSchema = z.object({
+  name: z.string(),
+  identity_number: z.string(),
+  address: z.string(),
+})
