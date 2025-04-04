@@ -136,6 +136,7 @@ const CafeTable = ({ applies, user }: { applies: IApply[]; user: IUser }) => {
   const searchParams = useSearchParams();
   const today = new Date()
   const month = searchParams.get('month') ?? (today.getMonth() + 1).toString()
+  const prev = Number(month) < today.getMonth() + 1
 
   return (
     <div className="w-full container bg-white rounded-xl">
@@ -182,7 +183,11 @@ const CafeTable = ({ applies, user }: { applies: IApply[]; user: IUser }) => {
                 <TableCell>{apply.user.tel}</TableCell>
                 {/* <TableCell>{apply.user.address}</TableCell> */}
                 <TableCell>{apply.bean - apply.apply_donation.reduce((prev, donation) => prev + donation.bean, 0)} / {apply.bean}</TableCell>
-                <TableCell>{!donation ? <DoDonation apply={apply} /> : <CancelDonation donation={donation} />}</TableCell>
+                {prev ?
+                  <TableCell></TableCell>
+                  :
+                  <TableCell>{!donation ? <DoDonation apply={apply} /> : <CancelDonation donation={donation} />}</TableCell>
+                }
               </TableRow>
             )
           })}
