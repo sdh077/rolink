@@ -6,7 +6,7 @@ export default function LoginPage() {
       <div className="w-[500px] h-[500px] border rounded-2xl py-8 px-12 bg-white flex items-center justify-center">
         <div className='w-full'>
           {/* title 넣거나 이미지 넣으셈 */}
-          <div className='text-center text-3xl font-medium pb-10'>신대호의 원두가게(임시)</div>
+          <div className='text-center text-3xl font-medium pb-16'>신대호의 원두가게(임시)</div>
           <div className="relative">
             <input
               id="email"
@@ -27,7 +27,7 @@ export default function LoginPage() {
           <label className="text-xl" htmlFor="email">이메일</label>
           <input id="email" name="email" type="email" required />
         </div> */}
-          <div className="relative mt-5">
+          <div className="relative my-5">
             <input
               id="password"
               name="password"
@@ -48,9 +48,9 @@ export default function LoginPage() {
           <div>
             <button className="bg-yellow-700 hover:bg-yellow-900 mt-5 w-full cursor-pointer rounded-md py-2.5 text-white transition-all hover:text-white" formAction={login}>로그인</button>
           </div>
-          <div>
+          {/* <div>
             <button className="bg-gray-300 hover:bg-gray-700 mt-5 w-full cursor-pointer rounded-md py-2.5 text-black transition-all hover:text-white" formAction={signup}>회원가입</button>
-          </div>
+          </div> */}
         </div>
 
 

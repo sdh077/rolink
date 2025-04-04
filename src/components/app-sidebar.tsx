@@ -10,28 +10,28 @@ import {
 
 export function CafeSidebar() {
   return (
-    <Sidebar className="w-40 mt-4 w-max-160">
+    <Sidebar className="w-40 w-max-160">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarMenu>
+          <SidebarMenu className="gap-y-2">
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <a href={'/'}>
-                  <span>원두 기부</span>
+                  <span className="text-lg tracking-tight">원두 기부하기</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <a href={'/donation'}>
-                  <span>기부 내역</span>
+                  <span className="text-lg tracking-tight">원두 기부 내역</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <a href={'/setting'}>
-                  <span>카페 정보</span>
+                  <span className="text-lg tracking-tight">카페 정보</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>

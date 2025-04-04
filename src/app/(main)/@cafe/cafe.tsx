@@ -28,6 +28,7 @@ import { toast } from "sonner"
 import { useRouter, useSearchParams } from 'next/navigation'
 import { IApply, IDonation } from "@/interface/apply"
 import { IUser } from "@/interface/user"
+import dayjs from 'dayjs'
 
 export function CancelDonation({ donation }: { donation: IDonation }) {
   const [on, setOn] = useState(false)
@@ -137,7 +138,16 @@ const CafeTable = ({ applies, user }: { applies: IApply[]; user: IUser }) => {
   const month = searchParams.get('month') ?? (today.getMonth() + 1).toString()
 
   return (
-    <div className="w-full container my-3 md:py-5 bg-white rounded-xl">
+    <div className="w-full container bg-white rounded-xl">
+      <div className="pb-5 flex justify-between items-center">
+        <span className="text-2xl font-semibold">원두 기부하기</span>
+        <div>
+          <p className="text-right text-xs text-gray-500">접속일시</p>
+          <span>{dayjs().format('YYYY년 M월 D일 HH:mm')}</span>
+        </div>
+
+
+      </div>
       <div className='flex gap-8 justify-left'>
         <Select value={month} onValueChange={(month) => pushPathname('month', month)}>
           <SelectTrigger className="w-[180px]">
