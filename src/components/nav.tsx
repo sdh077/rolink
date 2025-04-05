@@ -1,9 +1,56 @@
 'use client'
 import React from 'react'
-import SignOut from './sign-out'
 import { IUser } from '@/interface/user'
 import { SidebarTrigger } from './ui/sidebar'
 import { useMediaQuery } from '@/hooks/use-media-query'
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { createClient } from '@/utils/supabase/client'
+import { redirect, useRouter } from 'next/navigation'
+
+export function Profile({ user }: { user: IUser }) {
+  const router = useRouter()
+  const signOut = async () => {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    redirect('/login')
+  }
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" className=''>{user.name}</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Menu</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem onClick={() => router.push('/')}>
+            기부 신청
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push('/donation')}>
+            기부 내역 리스트
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem onClick={() => router.push('/inquiry')}>문의 내역</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={signOut}>
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
 
 const Nav = ({ user }: { user: IUser }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)")
@@ -16,8 +63,7 @@ const Nav = ({ user }: { user: IUser }) => {
             <p className="text-2xl text-primary-500 font-medium tracking-tight">원두 기부</p>
           </div>
           <div className='flex items-center gap-5'>
-            <p className="text-primary"><span className="text-lg font-medium">{user.name}</span><span className="text-sm">님</span></p>
-            <SignOut />
+            <Profile user={user} />
           </div>
         </div>
       </div>
