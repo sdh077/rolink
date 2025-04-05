@@ -6,6 +6,7 @@ import { IUser } from '@/interface/user'
 import { IApply } from '@/interface/apply'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
+import { InquiryPop } from './inquiry-pop'
 type ApplyObj = { [x: string]: IApply }
 
 const getApply = async () => {
@@ -57,7 +58,9 @@ export default async function Page() {
               <TableCell className={tbodyClass + ' w-60'}>{obj[`${2025}-${month}`]?.bean}</TableCell>
               <TableCell className={tbodyClass + ' flex flex-col md:flex-row gap-5 items-center'}>
                 {obj[`${2025}-${month}`]?.apply_donation.map(e =>
-                  <div key={`${month}=${e.id}`} className="bg-yellow-800 rounded-sm px-2.5 py-1 tracking-tight text-normal text-white">{e.user.name} {e.bean}kg</div>
+                  <InquiryPop key={`${month}=${e.id}`}>
+                    <button className="bg-yellow-800 rounded-sm px-2.5 py-1 tracking-tight text-normal text-white">{e.user.name} {e.bean}kg</button>
+                  </InquiryPop>
                 )}
               </TableCell>
             </TableRow>

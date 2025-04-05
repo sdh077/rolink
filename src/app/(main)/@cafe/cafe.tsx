@@ -84,6 +84,7 @@ export function DoDonation({ apply }: { apply: IApply; }) {
   const router = useRouter()
   const [on, setOn] = useState(false)
   const [bean, setBean] = useState<number | ''>(0)
+  const [memo, setMemo] = useState<string>('')
   const [open, setOpen] = useState(false)
   const submit = async () => {
     if (on) return
@@ -120,6 +121,8 @@ export function DoDonation({ apply }: { apply: IApply; }) {
           </DialogDescription>
           <Label htmlFor='bean' >필요 원두(KG)</Label>
           <Input id='bean' type='number' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} />
+          <Label htmlFor='bean' >원두 설명</Label>
+          <Input id='bean' value={memo} onChange={e => setMemo(e.target.value)} />
         </DialogHeader>
         <DialogFooter>
           <Button disabled={on} onClick={submit}>신청하기</Button>

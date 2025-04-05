@@ -72,8 +72,11 @@ export function AddApply({ disabled, year, month, apply }: { disabled: boolean; 
           <DialogDescription>
             필요한 원두의 양을 입력해주세요
           </DialogDescription>
-          <Label htmlFor='bean' >필요 원두(KG)</Label>
+          <Label htmlFor='bean' >기부 원두(KG)</Label>
           <Input id='bean' type='number' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} />
+
+          <Label htmlFor='bean' >원두 설명</Label>
+          <Input id='bean' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} />
         </DialogHeader>
         <DialogFooter>
           <Button disabled={on} onClick={submit}>신청하기</Button>
