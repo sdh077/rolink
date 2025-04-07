@@ -6,7 +6,7 @@ export default function LoginPage() {
       <div className="w-[500px] h-[500px] border rounded-2xl py-8 px-12 bg-white flex items-center justify-center">
         <div className='w-full'>
           {/* title 넣거나 이미지 넣으셈 */}
-          <div className='text-center text-3xl font-medium pb-16'>신대호의 원두가게(임시)</div>
+          <div className='text-center text-3xl font-medium pb-16'>커피링크</div>
           <div className="relative">
             <input
               id="email"
