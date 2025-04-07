@@ -6,12 +6,13 @@ const getDonations = async () => {
   const supabase = await createClient()
   const { data: user } = await supabase.auth.getUser()
   return await supabase.from('apply_donation')
-    .select('*, apply_bean(*, user(*)), user(*)')
+    .select('*, apply_bean(*, church:user!user_id(*)), cafe:user!church_id(*)')
     .eq('cafe_id', user.user?.id)
     .overrideTypes<IDonation[]>()
 }
 const Donation = async () => {
-  const { data: donations } = await getDonations()
+  const { data: donations, error } = await getDonations()
+  console.log(donations, error)
   return (
     <div className='grid md:grid-cols-3 w-full gap-16'>
       {donations?.map(donation =>
@@ -29,7 +30,7 @@ const Donation = async () => {
               기부 대상
             </div>
             <div>
-              {donation.apply_bean.user.name}
+              {donation.apply_bean.church?.name}
             </div>
           </div>
 

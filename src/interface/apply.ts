@@ -9,7 +9,7 @@ export interface IApply {
   user_id: string;
   use_yn: boolean;
   apply_donation: IDonation[];
-  user: IUser
+  church: IUser
 }
 
 export interface IDonation {
@@ -18,6 +18,6 @@ export interface IDonation {
   apply_bean_id: number;
   cafe_id: string;
   bean: number;
-  user: IUser;
+  cafe: IUser;
   apply_bean: IApply
 }

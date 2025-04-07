@@ -9,9 +9,10 @@ import CafeTable from './cafe'
 const getChurchApply = async (month: string | undefined) => {
   const supabase = await createClient()
   const today = new Date()
+  const selectMonth = month === 'now' ? today.getMonth() + 1 : today.getMonth() + 2
   return await supabase.from('apply_bean')
-    .select('*, user(*), apply_donation(*, user(*))')
-    .eq('month', month ?? today.getMonth() + 1)
+    .select('*, church:user!user_id(*), apply_donation(*, cafe:user!cafe_id(*))')
+    .eq('month', selectMonth)
     .overrideTypes<IApply[]>()
 }
 

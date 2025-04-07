@@ -13,7 +13,7 @@ const getApply = async () => {
   const supabase = await createClient()
   const { data: user } = await supabase.auth.getUser()
   return await supabase.from('apply_bean')
-    .select('*, apply_donation(*, user(*))')
+    .select('*, apply_donation(*, cafe:user!cafe_id(*))')
     .eq('user_id', user.user?.id)
     .overrideTypes<IApply[]>()
 }
@@ -58,8 +58,8 @@ export default async function Page() {
               <TableCell className={tbodyClass + ' w-60'}>{obj[`${2025}-${month}`]?.bean}</TableCell>
               <TableCell className={tbodyClass + ' flex flex-col md:flex-row gap-5 items-center'}>
                 {obj[`${2025}-${month}`]?.apply_donation.map(e =>
-                  <InquiryPop key={`${month}=${e.id}`} cafeId={e.cafe_id} cafeName={e.user.name}>
-                    <button className="bg-yellow-800 rounded-sm px-2.5 py-1 tracking-tight text-normal text-white">{e.user.name} {e.bean}kg</button>
+                  <InquiryPop key={`${month}=${e.id}`} cafeId={e.cafe_id} cafeName={e.cafe.name}>
+                    <button className="bg-yellow-800 rounded-sm px-2.5 py-1 tracking-tight text-normal text-white">{e.cafe.name} {e.bean}kg</button>
                   </InquiryPop>
                 )}
               </TableCell>

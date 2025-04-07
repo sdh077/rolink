@@ -1,4 +1,5 @@
-import Nav from "@/components/nav"
+import CafeNav from "@/components/cafe-nav"
+import ChurchNav from "@/components/church-nav"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { IUser } from "@/interface/user"
 import { createClient } from "@/utils/supabase/server"
@@ -22,8 +23,18 @@ export default async function Layout({
   } return (
     <SidebarProvider>
       <div>
-        <Nav user={user} />
-        {user.type === 'church' ? church : cafe}
+
+        {user.type === 'church' ?
+          <>
+            <ChurchNav user={user} />
+            {church}
+          </>
+          :
+          <>
+            <CafeNav user={user} />
+            {cafe}
+          </>
+        }
       </div>
     </SidebarProvider>
   )

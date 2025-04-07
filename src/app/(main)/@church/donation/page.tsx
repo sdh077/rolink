@@ -6,7 +6,7 @@ const getDonations = async () => {
   const supabase = await createClient()
   const { data: user } = await supabase.auth.getUser()
   return await supabase.from('apply_donation')
-    .select('*, apply_bean(*, user(*)), user(*)')
+    .select('*, apply_bean(*, church:user!church_id(*)), cafe:user!cafe_id(*)')
     .eq('cafe_id', user.user?.id)
     .overrideTypes<IDonation[]>()
 }
@@ -29,7 +29,7 @@ const Donation = async () => {
               기부 대상
             </div>
             <div>
-              {donation.apply_bean.user.name}
+              {donation.apply_bean.church.name}
             </div>
           </div>
 

@@ -28,13 +28,6 @@ export function CafeSidebar() {
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href={'/setting'}>
-                  <span className="text-lg tracking-tight">카페 정보</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
           <SidebarGroupContent></SidebarGroupContent>
         </SidebarGroup>
