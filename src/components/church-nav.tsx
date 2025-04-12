@@ -60,7 +60,7 @@ const Nav = ({ user }: { user: IUser }) => {
         <div className="flex container justify-between items-center">
           {!isDesktop && user.type === 'cafe' && <SidebarTrigger />}
           <div>
-            <p className="text-2xl text-primary-500 font-medium tracking-tight">원두 기부</p>
+            <p className="text-2xl font-bold text-primary-500 tracking-tight">원두 기부</p>
           </div>
           <div className='flex items-center gap-5'>
             <Profile user={user} />

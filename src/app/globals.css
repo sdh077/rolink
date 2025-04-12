@@ -126,14 +126,14 @@
 }
 
 @font-face {
-	font-family: 'HappinessSansVF';
-	src: url('/fonts/HappinessSansVF.woff2') format('woff2');
-	font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
-	font-style: normal;
+  font-family: 'HappinessSansVF';
+  src: url('/fonts/HappinessSansVF.woff2') format('woff2');
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+  font-style: normal;
 }
 
 body {
-	font-family: 'HappinessSansVF';
+  font-family: 'HappinessSansVF';
 }
 
 @layer base {
