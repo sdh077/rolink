@@ -10,40 +10,38 @@ const getDonations = async () => {
     .eq('cafe_id', user.user?.id)
     .overrideTypes<IDonation[]>()
 }
-const Donation = async () => {
-  const { data: donations, error } = await getDonations()
-  console.log(donations, error)
-  return (
-    <div className='grid md:grid-cols-3 w-full gap-16'>
-      {donations?.map(donation =>
-        <div key={donation.id}>
-          <div className='flex justify-between'>
-            <div>
-              날짜
-            </div>
-            <div>
-              {donation.apply_bean.year}-{donation.apply_bean.month}
-            </div>
-          </div>
-          <div className='flex justify-between'>
-            <div>
-              기부 대상
-            </div>
-            <div>
-              {donation.apply_bean.church?.name}
-            </div>
-          </div>
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
-          <div className='flex justify-between'>
-            <div>
-              기부 커피
-            </div>
-            <div>
-              {donation.bean}kg
-            </div>
-          </div>
-        </div>
-      )}
+const Donation = async () => {
+  const { data: donations } = await getDonations()
+  return (
+    <div className='w-full gap-16'>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">날짜</TableHead>
+            <TableHead>기부 대상</TableHead>
+            <TableHead>기부 커피</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {donations?.map((donation) => (
+            <TableRow key={donation.id}>
+              <TableCell className="font-medium">{donation.apply_bean.year}-{donation.apply_bean.month}</TableCell>
+              <TableCell>{donation.apply_bean.church?.name}</TableCell>
+              <TableCell>{donation.bean}kg</TableCell>
+              <TableCell className="text-right">{donation.totalAmount}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   )
 }

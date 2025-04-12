@@ -1,6 +1,7 @@
 // components/DaumPostcode.tsx
 import { AddressData } from '@/interface/user';
 import React, { useEffect } from 'react';
+import { Button } from './ui/button';
 
 
 
@@ -24,9 +25,9 @@ const DaumPostcode: React.FC<DaumPostcodeProps> = ({ onComplete }) => {
   };
 
   return (
-    <button type='button' onClick={handleClick} className="p-2 bg-blue-500 text-white rounded">
+    <Button type='button' onClick={handleClick} >
       우편번호 검색
-    </button>
+    </Button>
   );
 };
 

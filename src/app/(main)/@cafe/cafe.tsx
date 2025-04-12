@@ -44,7 +44,7 @@ export function CancelDonation({ donation }: { donation: IDonation }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className='bg-primary-200 hover:bg-primary-900 w-full cursor-pointer rounded-md py-1.5 text-black transition-all hover:text-white'>취소하기</Button>
+        <Button variant="outline" className='bg-primary-600 hover:bg-primary-900 w-full cursor-pointer rounded-md py-1.5 transition-all text-white hover:text-white'>취소하기</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -76,7 +76,7 @@ export function DoDonation({ apply }: { apply: IApply; }) {
     try {
       const { data: user } = await supabase.auth.getUser()
       const { error } = await supabase.from('apply_donation')
-        .insert({ cafe_id: user.user?.id, apply_bean_id: apply.id, bean, })
+        .insert({ cafe_id: user.user?.id, apply_bean_id: apply.id, bean, church_id: apply.church.id })
       if (error) toast('생성에 실패하였습니다.', {
         description: error.message,
         action: {

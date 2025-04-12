@@ -75,8 +75,8 @@ export function AddApply({ disabled, year, month, apply }: { disabled: boolean; 
           <Label htmlFor='bean' >기부 원두(KG)</Label>
           <Input id='bean' type='number' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} />
 
-          <Label htmlFor='bean' >원두 설명</Label>
-          <Input id='bean' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} />
+          {/* <Label htmlFor='bean' >원두 설명</Label>
+          <Input id='bean' value={bean} onChange={e => setBean(e.target.value === '' ? '' : Number(e.target.value))} /> */}
         </DialogHeader>
         <DialogFooter>
           <Button disabled={on} onClick={submit}>신청하기</Button>

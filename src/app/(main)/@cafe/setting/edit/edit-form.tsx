@@ -100,7 +100,7 @@ function EditForm({ info }: { info: IDonationInfo }) {
               </FormItem>
             )}
           />
-          <div className="p-4">
+          <div className="p-4 border rounded-md">
             <DaumPostcode onComplete={handleComplete} />
             <div className="mt-4">
               <p>우편번호: {zonecode}</p>

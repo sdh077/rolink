@@ -52,10 +52,10 @@ export default async function Page() {
         </TableHeader>
         <TableBody>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(month =>
-            <TableRow key={month} className={month < currentMonth ? 'bg-gray-300' : 'hover:bg-yellow-100'}>
+            <TableRow key={month} className={month < currentMonth ? 'bg-gray-300' : 'hover:bg-primary-300'}>
               <TableCell className={tbodyClass + ' w-32'}>{month}월</TableCell>
               <TableCell className={tbodyClass + ' w-80'}><AddApply disabled={month < currentMonth} year={2025} month={month} apply={obj[`${2025}-${month}`]} /></TableCell>
-              <TableCell className={tbodyClass + ' w-60'}>{obj[`${2025}-${month}`]?.bean}</TableCell>
+              <TableCell className={tbodyClass + ' w-60'}>{obj[`${2025}-${month}`]?.bean}{obj[`${2025}-${month}`]?.bean ? 'kg' : ''}</TableCell>
               <TableCell className={tbodyClass + ' flex flex-col md:flex-row gap-5 items-center'}>
                 {obj[`${2025}-${month}`]?.apply_donation.map(e =>
                   <InquiryPop key={`${month}=${e.id}`} cafeId={e.cafe_id} cafeName={e.cafe.name}>
